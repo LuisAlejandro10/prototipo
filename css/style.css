@@ -1,0 +1,273 @@
+@import url('https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&display=swap');
+
+/* ============ Variables ============ */
+:root {
+  --ink: #280a2e;          /* morado casi negro: botón, bordes, iconos */
+  --lavender: #ebd7fb;     /* fondo de la pantalla */
+  --lavender-glow: #f3e5fd;/* brillo central del fondo */
+  --lavender-edge: #e4cbf6;/* bordes del fondo */
+  --field: #f8ecff;        /* fondo de inputs y botón secundario */
+  --muted: #b690cc;        /* placeholders y textos secundarios */
+  --muted-strong: #a487ba; /* "¿Olvidaste tu contraseña?" */
+}
+
+/* ============ Reset básico ============ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Figtree', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  color: var(--ink);
+  background: #d9c2ee;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ============ Pantalla de login ============ */
+#login {
+  width: 100%;
+  max-width: 390px;
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 72px 24px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: radial-gradient(
+    circle at 50% 38%,
+    var(--lavender-glow) 0%,
+    var(--lavender) 55%,
+    var(--lavender-edge) 100%
+  );
+}
+
+/* ---------- Encabezado: logo + título ---------- */
+#login > header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+}
+
+#login > header img {
+  width: 150px;
+  height: auto;
+  display: block;
+}
+
+#login > header h1 {
+  font-size: 2.25rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+  color: #000;
+}
+
+/* ---------- Formulario ---------- */
+#login > section {
+  width: 100%;
+  margin-top: 56px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* Las etiquetas se ocultan visualmente pero siguen disponibles
+   para lectores de pantalla (el diseño usa solo placeholder + icono) */
+#login label[for="correo"],
+#login label[for="contrasena"] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+#login input[type="email"],
+#login input[type="password"] {
+  width: 100%;
+  height: 46px;
+  padding: 0 16px 0 54px;
+  font: inherit;
+  font-size: 1rem;
+  color: var(--ink);
+  background-color: var(--field);
+  background-repeat: no-repeat;
+  background-position: 14px center;
+  background-size: 24px 24px;
+  border: 1px solid var(--ink);
+  border-radius: 16px;
+  outline: none;
+}
+
+#login input::placeholder {
+  color: var(--muted);
+  opacity: 1;
+}
+
+#login input[type="email"] {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='1' y='4' width='22' height='16' rx='3' fill='%23280a2e'/%3E%3Cpath d='M3.5 8l8.5 5.5L20.5 8' fill='none' stroke='%23f8ecff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+
+#login input[type="password"] {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M7.5 10.5V7.5a4.5 4.5 0 0 1 9 0v3' fill='none' stroke='%23280a2e' stroke-width='2' stroke-linecap='round'/%3E%3Crect x='4' y='10.5' width='16' height='10.5' rx='3.5' fill='none' stroke='%23280a2e' stroke-width='2'/%3E%3C/svg%3E");
+}
+
+#login input[type="email"]:focus-visible,
+#login input[type="password"]:focus-visible {
+  box-shadow: 0 0 0 3px rgba(40, 10, 46, 0.25);
+}
+
+/* ---------- Recordarme + olvidaste contraseña ---------- */
+#login > section > div:nth-of-type(3) {
+  display: flex;
+  align-items: center;
+  margin-top: -2px;
+  padding: 0 2px;
+  font-size: 0.6875rem;
+}
+
+#login input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  flex: none;
+  width: 22px;
+  height: 22px;
+  background-color: var(--field);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 16px 16px;
+  border: 1px solid var(--ink);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#login input[type="checkbox"]:checked {
+  background-color: var(--ink);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5' fill='none' stroke='%23ffffff' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+
+#login input[type="checkbox"]:focus-visible {
+  outline: 3px solid rgba(40, 10, 46, 0.35);
+  outline-offset: 2px;
+}
+
+#login label[for="recordarme"] {
+  margin: 0 auto 0 8px;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+#login > section > div:nth-of-type(3) a {
+  font-weight: 700;
+  color: var(--muted-strong);
+}
+
+#login > section > div:nth-of-type(3) a:hover {
+  color: var(--ink);
+}
+
+/* ---------- Botones ---------- */
+#login > section > a {
+  display: block;
+}
+
+#login button {
+  width: 100%;
+  height: 66px;
+  font: inherit;
+  font-size: 1.375rem;
+  font-weight: 400;
+  border-radius: 24px;
+  cursor: pointer;
+  transition: transform 0.12s ease, filter 0.12s ease;
+}
+
+#login button:active {
+  transform: scale(0.98);
+}
+
+#login button:focus-visible {
+  outline: 3px solid rgba(40, 10, 46, 0.35);
+  outline-offset: 3px;
+}
+
+/* Botón principal: "Iniciar sesión →" */
+#login > section > a:nth-of-type(1) button {
+  margin-top: 4px;
+  color: #f5e9fc;
+  background: var(--ink);
+  border: 1px solid var(--ink);
+}
+
+#login > section > a:nth-of-type(1) button:hover {
+  filter: brightness(1.25);
+}
+
+/* Botón secundario: "Crear cuenta" */
+#login > section > a:nth-of-type(2) button {
+  color: var(--ink);
+  background: var(--field);
+  border: 1px solid var(--ink);
+}
+
+#login > section > a:nth-of-type(2) button:hover {
+  background: #fff;
+}
+
+/* ---------- Divisor con círculo central ---------- */
+#login hr {
+  width: calc(100% - 8px);
+  height: 9px;
+  margin: 12px auto;
+  border: 0;
+  background:
+    radial-gradient(circle, transparent 2px, var(--ink) 2.5px, var(--ink) 3.5px, transparent 4px) center / 9px 9px no-repeat,
+    linear-gradient(var(--ink), var(--ink)) left center / calc(50% - 7px) 1px no-repeat,
+    linear-gradient(var(--ink), var(--ink)) right center / calc(50% - 7px) 1px no-repeat;
+}
+
+/* ---------- Pie: términos y condiciones ---------- */
+#login > footer {
+  margin-top: auto;
+  padding-top: 40px;
+  text-align: center;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--ink);
+}
+
+#login > footer a {
+  display: block;
+  font-weight: 700;
+}
+
+#login > footer a:hover {
+  text-decoration: underline;
+}
+
+/* ---------- Pantallas muy pequeñas ---------- */
+@media (max-width: 360px) {
+  #login {
+    padding: 48px 16px 24px;
+  }
+
+  #login > header h1 {
+    font-size: 2rem;
+  }
+
+  #login button {
+    height: 58px;
+    font-size: 1.25rem;
+  }
+}

@@ -1,0 +1,353 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* ============ Variables ============ */
+:root {
+  --ink: #280a2e;            /* morado casi negro: botones, iconos activos */
+  --text: #111;              /* texto principal */
+  --muted: #5f5a66;          /* texto secundario */
+  --page: #faf8fc;           /* fondo de la pantalla */
+  --card: #ffffff;
+  --lilac: #d8b9f0;          /* bloque "Ver horarios disponibles" */
+  --lilac-soft: #efe3fb;     /* fondo del avatar */
+  --chevron: #c9a6ee;
+  --banner-from: #7d4fd0;
+  --banner-to: #b79bf2;
+  --banner-accent: #d9b6ff;  /* "cosas increíbles" */
+}
+
+/* ============ Reset básico ============ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  color: var(--text);
+  background: #e9e3ef;
+  -webkit-font-smoothing: antialiased;
+}
+
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24
+}
+
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+/* ============ Pantalla de inicio ============ */
+#inicio {
+  position: relative;
+  width: 100%;
+  max-width: 390px;
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 48px 24px 130px; /* espacio inferior para la barra flotante */
+  background: var(--page);
+}
+
+/* ---------- Encabezado ---------- */
+#inicio > header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+#inicio > header > img {
+  flex: none;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+#inicio > header > div {
+  flex: 1;
+  text-align: center;
+}
+
+#inicio > header h1 {
+  font-size: 1.375rem;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+#inicio > header p {
+  margin-top: 4px;
+  font-size: 0.625rem;
+  color: var(--muted);
+}
+
+#inicio > header button {
+  flex: none;
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  background: none;
+  border: 0;
+  border-radius: 50%;
+}
+
+#inicio > header button img {
+  width: 28px;
+  height: 28px;
+}
+
+/* ---------- Banner ---------- */
+#banner {
+  position: relative;
+  min-height: 196px;
+  margin-top: 32px;
+  overflow: hidden;
+  border-radius: 28px;
+  background: linear-gradient(120deg, var(--banner-from) 0%, var(--banner-to) 100%);
+  color: #fff;
+}
+
+#banner > div {
+  position: relative;
+  z-index: 1;
+  max-width: 62%;
+  padding: 24px 0 24px 20px;
+}
+
+#banner h2 {
+  font-size: 1.1875rem;
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+#banner h2 span {
+  color: var(--banner-accent);
+}
+
+#banner p {
+  margin-top: 10px;
+  font-size: 0.6875rem;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+#banner a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+  padding: 8px 16px 8px 12px;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.22);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: 999px;
+}
+
+#banner a img {
+  width: 18px;
+  height: 18px;
+}
+
+/* Ilustración pegada abajo a la derecha */
+#banner > img {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+  width: auto;
+  max-width: 62%;
+  object-fit: contain;
+  object-position: right bottom;
+}
+
+/* ---------- Tu personal de compañía ---------- */
+#personal {
+  margin-top: 40px;
+}
+
+#personal > h2 {
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+#personal > p {
+  margin-top: 4px;
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+
+#personal article {
+  margin-top: 24px;
+  padding: 20px;
+  background: var(--card);
+  border-radius: 28px;
+  box-shadow: 0 6px 24px rgba(60, 20, 90, 0.12);
+}
+
+#personal article > div {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+#personal article > div > img {
+  flex: none;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: var(--lilac-soft);
+}
+
+#personal article > div > div {
+  flex: 1;
+}
+
+#personal article h3 {
+  font-size: 1.375rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+#personal article > div > div p {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 6px;
+  font-size: 0.75rem;
+}
+
+#personal article strong {
+  font-weight: 700;
+}
+
+#personal article small {
+  font-size: 0.6875rem;
+  color: var(--muted);
+}
+
+#personal article > div > a {
+  flex: none;
+  padding: 0 4px;
+  font-size: 2.25rem;
+  line-height: 1;
+  font-weight: 300;
+  color: var(--chevron);
+}
+
+/* Bloque "Ver horarios disponibles" */
+#personal aside {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 22px;
+  padding: 14px 16px;
+  background: var(--lilac);
+  border-radius: 18px;
+  box-shadow: 0 4px 12px rgba(60, 20, 90, 0.15);
+}
+
+#personal aside img {
+  flex: none;
+  width: 28px;
+  height: 28px;
+}
+
+#personal aside p {
+  flex: 1;
+  font-size: 0.8125rem;
+}
+
+#personal aside button {
+  padding: 8px 14px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #fff;
+  background: var(--ink);
+  border: 0;
+  border-radius: 999px;
+}
+
+/* ---------- Navegación inferior flotante ---------- */
+#inicio > nav {
+  position: fixed;
+  left: 50%;
+  bottom: 20px;
+  transform: translateX(-50%);
+  width: min(342px, calc(100vw - 48px));
+  padding: 10px 18px 8px;
+  background: var(--card);
+  border-radius: 32px;
+  box-shadow: 0 8px 28px rgba(60, 20, 90, 0.18);
+}
+
+#inicio > nav ul {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  list-style: none;
+}
+
+#inicio > nav a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--text);
+}
+
+#inicio > nav a img {
+  width: 28px;
+  height: 28px;
+}
+
+/* "Mapa" va al centro, más grande */
+#inicio > nav li:nth-child(3) a img {
+  width: 44px;
+  height: 44px;
+}
+
+#inicio > nav a[aria-current="page"] {
+  font-weight: 700;
+}
+
+#inicio > nav a:focus-visible,
+#inicio a:focus-visible,
+#inicio button:focus-visible {
+  outline: 3px solid rgba(40, 10, 46, 0.35);
+  outline-offset: 3px;
+  border-radius: 12px;
+}
+
+/* ---------- Pantallas muy pequeñas ---------- */
+@media (max-width: 360px) {
+  #inicio {
+    padding: 32px 16px 130px;
+  }
+
+  #banner h2 {
+    font-size: 1.0625rem;
+  }
+
+  #personal article h3 {
+    font-size: 1.1875rem;
+  }
+}

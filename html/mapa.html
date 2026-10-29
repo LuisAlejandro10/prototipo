@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mapa</title>
+
+  <!-- Leaflet: librería de mapas gratuita (usa OpenStreetMap, sin API key) -->
+  <link rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+        crossorigin="">
+
+  <link rel="stylesheet" href="/css/mapa.css">
+</head>
+<body>
+
+  <main id="mapa">
+
+    <!-- Contenedor del mapa (Leaflet lo llena con el mapa) -->
+    <section id="mapa-vista" aria-label="Mapa con tu ubicación"></section>
+
+    <!-- Navegación inferior -->
+    <nav aria-label="Navegación principal">
+      <ul>
+        <li>
+          <a href="/html/home.html">
+            <img src="/img/home_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" alt="">
+            <span>Inicio</span>
+          </a>
+        </li>
+        <li>
+          <a href="/html/reserva.html">
+            <img src="/img/call_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" alt="">
+            <span>Reservar</span>
+          </a>
+        </li>
+        <li>
+          <a href="/html/mapa.html" aria-current="page">
+            <img src="/img/location_on_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" alt="">
+            <span>Mapa</span>
+          </a>
+        </li>
+        <li>
+          <a href="agenda.html">
+            <img src="/img/calendar_month_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" alt="">
+            <span>Agenda</span>
+          </a>
+        </li>
+        <li>
+          <a href="/html/cuenta.html">
+            <img src="/img/person_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" alt="">
+            <span>Cuenta</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+  </main>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+          integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+          crossorigin=""></script>
+  <script>
+    // Ubicación por defecto (cámbiala por la de tu servicio): [latitud, longitud]
+    var ubicacionPorDefecto = [19.0526, -98.1950];
+
+    // Mapa sin controles de zoom (se usa con los dedos, como en el diseño)
+    var mapa = L.map('mapa-vista', { zoomControl: false }).setView(ubicacionPorDefecto, 17);
+
+    // Mapa base gratuito de OpenStreetMap
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(mapa);
+
+    // Pin de ubicación (se estiliza en mapa.css con la clase "pin-ubicacion")
+    var pin = L.marker(ubicacionPorDefecto, {
+      icon: L.divIcon({
+        className: 'pin-ubicacion',
+        html: '<span aria-hidden="true">📍</span>',
+        iconSize: [32, 40],
+        iconAnchor: [16, 38]
+      })
+    }).addTo(mapa);
+
+    // Si el usuario da permiso, centra el mapa en su ubicación real
+    if ('geolocation' in navigator) {
+      navigator.geolocation.getCurrentPosition(function (pos) {
+        var actual = [pos.coords.latitude, pos.coords.longitude];
+        mapa.setView(actual, 17);
+        pin.setLatLng(actual);
+      });
+    }
+  </script>
+
+</body>
+</html>

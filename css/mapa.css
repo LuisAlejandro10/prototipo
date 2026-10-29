@@ -1,0 +1,134 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* ============ Variables ============ */
+:root {
+  --ink: #280a2e;   /* morado casi negro */
+  --text: #111;
+  --card: #ffffff;
+}
+
+/* ============ Reset básico ============ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  color: var(--text);
+  background: #e9e3ef;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ============ Pantalla Mapa ============ */
+#mapa {
+  position: relative;
+  width: 100%;
+  max-width: 390px;
+  height: 100vh;
+  height: 100dvh;
+  margin: 0 auto;
+  overflow: hidden;
+  background: #f5f5f7;
+}
+
+/* ---------- Mapa a pantalla completa ---------- */
+/* Leaflet necesita que el contenedor tenga alto definido */
+#mapa-vista {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  font-family: inherit;
+  background: #f5f5f7;
+}
+
+/* ---------- Pin de ubicación ---------- */
+.pin-ubicacion {
+  background: none;
+  border: 0;
+}
+
+.pin-ubicacion span {
+  display: block;
+  font-size: 2.25rem;
+  line-height: 1;
+  text-align: center;
+  filter: drop-shadow(0 3px 3px rgba(0, 0, 0, 0.3));
+}
+
+/* Si prefieres tu propio icono: pon <img> dentro del divIcon
+   y estílalo aquí, por ejemplo:
+   .pin-ubicacion img { width: 32px; height: 40px; } */
+
+/* ---------- Atribución de OpenStreetMap ---------- */
+/* Es obligatoria, así que la subimos para que la barra no la tape */
+#mapa .leaflet-bottom {
+  bottom: 96px;
+}
+
+#mapa .leaflet-control-attribution {
+  font-size: 0.625rem;
+  background: rgba(255, 255, 255, 0.8);
+}
+
+/* ---------- Navegación inferior flotante ---------- */
+#mapa > nav {
+  position: fixed;
+  left: 50%;
+  bottom: 20px;
+  transform: translateX(-50%);
+  width: min(342px, calc(100vw - 48px));
+  padding: 10px 18px 8px;
+  background: var(--card);
+  border-radius: 32px;
+  box-shadow: 0 8px 28px rgba(60, 20, 90, 0.25);
+  z-index: 1100; /* por encima de los controles de Leaflet (hasta 1000) */
+}
+
+#mapa > nav ul {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  list-style: none;
+}
+
+#mapa > nav a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--text);
+}
+
+#mapa > nav a img {
+  width: 28px;
+  height: 28px;
+}
+
+/* "Mapa" va al centro, más grande */
+#mapa > nav li:nth-child(3) a img {
+  width: 44px;
+  height: 44px;
+}
+
+#mapa > nav a[aria-current="page"] {
+  font-weight: 700;
+}
+
+#mapa > nav a:focus-visible {
+  outline: 3px solid rgba(40, 10, 46, 0.35);
+  outline-offset: 3px;
+  border-radius: 12px;
+}
